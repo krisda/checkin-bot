@@ -24,12 +24,8 @@ jobs:
           pip install requests
 
       - name: Run check-in script
-        shell: bash
         run: |
-          echo "Running check-in..."
-          python3 - <<EOF
-import requests
-
+          echo "import requests
 url = 'https://bpps.ac.th/pmis/attendance_add.php'
 data = {
     'key': '1579900157943',
@@ -43,5 +39,5 @@ if 'บันทึก' in response.text:
     print('✅ ลงชื่อเข้างานเรียบร้อยแล้ว')
 else:
     print('❌ ไม่สำเร็จ:', response.status_code)
-    print(response.text)
-EOF
+    print(response.text)" > checkin.py
+          python3 checkin.py
