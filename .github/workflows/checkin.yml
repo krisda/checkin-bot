@@ -10,25 +10,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install requests
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
 
-    - name: Run check-in script
-      run: |
-        python3 <<EOF
+      - name: Run check-in script
+        run: |
+          python3 -c """
 import requests
 
-url = "https://bpps.ac.th/pmis/attendance_add.php"
+url = 'https://bpps.ac.th/pmis/attendance_add.php'
 data = {
     'key': '1579900157943',
     'submit': 'บันทึกข้อมูล'
@@ -37,9 +37,9 @@ headers = {
     'User-Agent': 'Mozilla/5.0'
 }
 response = requests.post(url, data=data, headers=headers)
-if "บันทึก" in response.text:
-    print("\u2705 ลงชื่อเข้างานเรียบร้อยแล้ว")
+if 'บันทึก' in response.text:
+    print('✅ ลงชื่อเข้างานเรียบร้อยแล้ว')
 else:
-    print("\u274C ไม่สำเร็จ:", response.status_code)
+    print('❌ ไม่สำเร็จ:', response.status_code)
     print(response.text)
-EOF
+"""
