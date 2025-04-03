@@ -25,7 +25,8 @@ jobs:
 
       - name: Run check-in script
         run: |
-          python3 -c """
+          echo "Running check-in..."
+          python3 - <<EOF
 import requests
 
 url = 'https://bpps.ac.th/pmis/attendance_add.php'
@@ -42,4 +43,4 @@ if 'บันทึก' in response.text:
 else:
     print('❌ ไม่สำเร็จ:', response.status_code)
     print(response.text)
-"""
+EOF
