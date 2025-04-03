@@ -2,7 +2,7 @@ name: Auto Check-in Bot
 
 on:
   schedule:
-    - cron: '0 0 * * 1-5' # 07:00 Thailand = 00:00 UTC, Monday-Friday
+    - cron: '0 0 * * 1-5' # 07:00 Thailand = 00:00 UTC, Monday–Friday
   workflow_dispatch:
 
 jobs:
@@ -24,6 +24,7 @@ jobs:
           pip install requests
 
       - name: Run check-in script
+        shell: bash
         run: |
           echo "Running check-in..."
           python3 - <<EOF
