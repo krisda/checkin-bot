@@ -25,19 +25,19 @@ jobs:
 
       - name: Run check-in script
         run: |
-          echo "import requests
-url = 'https://bpps.ac.th/pmis/attendance_add.php'
-data = {
-    'key': '1579900157943',
-    'submit': 'บันทึกข้อมูล'
-}
-headers = {
-    'User-Agent': 'Mozilla/5.0'
-}
-response = requests.post(url, data=data, headers=headers)
-if 'บันทึก' in response.text:
-    print('✅ ลงชื่อเข้างานเรียบร้อยแล้ว')
-else:
-    print('❌ ไม่สำเร็จ:', response.status_code)
-    print(response.text)" > checkin.py
+          echo "import requests" > checkin.py
+          echo "url = 'https://bpps.ac.th/pmis/attendance_add.php'" >> checkin.py
+          echo "data = {" >> checkin.py
+          echo "    'key': '1579900157943'," >> checkin.py
+          echo "    'submit': 'บันทึกข้อมูล'" >> checkin.py
+          echo "}" >> checkin.py
+          echo "headers = {" >> checkin.py
+          echo "    'User-Agent': 'Mozilla/5.0'" >> checkin.py
+          echo "}" >> checkin.py
+          echo "response = requests.post(url, data=data, headers=headers)" >> checkin.py
+          echo "if 'บันทึก' in response.text:" >> checkin.py
+          echo "    print('✅ ลงชื่อเข้างานเรียบร้อยแล้ว')" >> checkin.py
+          echo "else:" >> checkin.py
+          echo "    print('❌ ไม่สำเร็จ:', response.status_code)" >> checkin.py
+          echo "    print(response.text)" >> checkin.py
           python3 checkin.py
